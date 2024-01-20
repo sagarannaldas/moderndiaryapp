@@ -34,7 +34,7 @@ spotless = "6.19.0"
 googleTruth = "1.1.4"
 
 #others
-kotlinCompilerExtensionVersion = "1.5.1"
+kotlinCompilerExtensionVersion = "1.5.4"
 appcompat = "1.6.1"
 material = "1.10.0"
 

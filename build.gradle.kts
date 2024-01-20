@@ -75,7 +75,7 @@ subprojects {
 
     tasks.withType<KotlinCompile> {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_1_8)
             freeCompilerArgs.addAll(
                 listOf(
                     "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
