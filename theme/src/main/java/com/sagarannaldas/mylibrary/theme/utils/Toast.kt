@@ -15,7 +15,7 @@ fun Context.toast(@StringRes message: Int, onToastDisplayChange: (Boolean) -> Un
 
 private fun Context.showToast(
     message: String,
-    onToastDisplayChange: (Boolean) -> Unit
+    onToastDisplayChange: (Boolean) -> Unit,
 ) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).also {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

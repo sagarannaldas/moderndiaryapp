@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ModernDiaryAppTheme {
-                Surface (modifier = Modifier.fillMaxSize()){
+                Surface(modifier = Modifier.fillMaxSize()) {
                     Text(text = "Hello World!")
                 }
             }

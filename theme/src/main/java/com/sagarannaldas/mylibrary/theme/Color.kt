@@ -2,7 +2,7 @@ package com.sagarannaldas.mylibrary.theme
 
 import androidx.compose.ui.graphics.Color
 
-//val md_theme_light_primary = Color(0xFF7D5700)
+// val md_theme_light_primary = Color(0xFF7D5700)
 val md_theme_light_primary = Color(0xFFFFBA2C)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFDEAA)
@@ -64,7 +64,6 @@ val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFFFFBA2C)
 val md_theme_dark_outlineVariant = Color(0xFF4E4639)
 val md_theme_dark_scrim = Color(0xFF000000)
-
 
 val seed = Color(0xFFFFB923)
 

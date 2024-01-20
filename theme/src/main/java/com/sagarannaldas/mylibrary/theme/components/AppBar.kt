@@ -1,7 +1,5 @@
 package com.sagarannaldas.mylibrary.theme.components
 
-import android.content.res.Configuration
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -13,20 +11,18 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
 import com.sagarannaldas.mylibrary.theme.ModernDiaryAppTheme
 
 @Composable
 fun AppBar(
     title: String,
     navIcon: ImageVector? = null,
-    onNav: () -> Unit = {}
+    onNav: () -> Unit = {},
 ) {
-
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary
+            titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         title = {
             Text(text = title)
@@ -37,7 +33,7 @@ fun AppBar(
                     Icon(imageVector = navIcon, contentDescription = "Nav Icon")
                 }
             }
-        }
+        },
     )
 }
 
@@ -48,9 +44,8 @@ private fun AppBarPreview() {
         Surface {
             AppBar(
                 title = "Modern Diary App",
-                navIcon = Icons.Filled.ArrowBack
+                navIcon = Icons.Filled.ArrowBack,
             )
-
         }
     }
 }
