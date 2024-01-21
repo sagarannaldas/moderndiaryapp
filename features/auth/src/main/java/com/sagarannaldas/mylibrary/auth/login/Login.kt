@@ -26,18 +26,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sagarannaldas.mylibrary.auth.R
 import com.sagarannaldas.mylibrary.theme.ModernDiaryAppTheme
 import com.sagarannaldas.mylibrary.theme.components.AppTextField
 import com.sagarannaldas.mylibrary.theme.components.ModernDiaryAppPreview
 
 @Composable
-fun LoginScreen() {
-    Login()
+fun LoginScreen(viewModel: LoginViewModel) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    Login(
+        uiState = uiState.value,
+        onEvent = { viewModel.onEvent(it) }
+    )
 }
 
 @Composable
-fun Login() {
+fun Login(
+    uiState: LoginUiState,
+    onEvent: (LoginUiEvent) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,89 +61,90 @@ fun Login() {
         )
 
         AppTextField(
-            value = "abc@gmail.com",
+            value = uiState.email,
             label = R.string.email,
             hint = "yourname@domain.com",
             leadingIcon = Icons.Filled.Email,
-            onValueChanged = {},
+            onValueChanged = {
+                onEvent(LoginUiEvent.EmailChanged(it))
+            },
             imeAction = ImeAction.Next,
         )
 
         AppTextField(
-            value = "12345",
+            value = uiState.password,
             label = R.string.password,
             hint = "your password",
             leadingIcon = Icons.Filled.Lock,
             isPasswordField = true,
-            onValueChanged = { },
+            onValueChanged = {
+                onEvent(LoginUiEvent.PasswordChanged(it))
+            },
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(38.dp),
-        ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .align(CenterVertically)
+                    .weight(1f),
+            ) {
+                Text(
+                    text = stringResource(R.string.forgot_password),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
 
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Column(
-                    modifier = Modifier
-                        .align(CenterVertically)
-                        .weight(1f),
-                ) {
-                    Text(
-                        text = stringResource(R.string.forgot_password),
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
-
-                    Text(
-                        text = stringResource(R.string.click_here_to_reset),
-                        style = MaterialTheme.typography.bodySmall,
-                    )
-                }
-
-                Button(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 16.dp),
-                    onClick = {
-
-                    },
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_forward),
-                        contentDescription = "login",
-                    )
-                }
+                Text(
+                    text = stringResource(R.string.click_here_to_reset),
+                    style = MaterialTheme.typography.bodySmall,
+                )
             }
 
-            Text(
+            Button(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 64.dp)
-                    .clickable { },
-                text = stringResource(R.string.dont_have_account),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyLarge,
-            )
+                    .weight(1f)
+                    .padding(start = 16.dp),
+                onClick = {
 
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 64.dp),
-                text = stringResource(R.string.agree_to_terms),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium,
-            )
+                },
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = "login",
+                )
+            }
         }
+
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 64.dp)
+                .clickable { },
+            text = stringResource(R.string.dont_have_account),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge,
+        )
+
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 64.dp),
+            text = stringResource(R.string.agree_to_terms),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium,
+        )
     }
 }
+
 
 @ModernDiaryAppPreview
 @Composable
 fun LoginScreenPreview() {
     ModernDiaryAppTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            Login()
+            Login(
+                uiState = LoginUiState(),
+                onEvent = {}
+            )
         }
     }
 }
