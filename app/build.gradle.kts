@@ -22,15 +22,22 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String","MODERN_APP_HOST","\"not given\"")
+        }
+
+        debug {
+            buildConfigField("String","MODERN_APP_HOST","\"192.168.0.0\"")
         }
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
     implementation(projects.theme)
+    implementation(projects.network)
     implementation(projects.features.auth)
 
     implementation(libs.androidx.core.ktx)
