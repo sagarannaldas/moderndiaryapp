@@ -14,6 +14,7 @@ android {
 
 dependencies {
     implementation(projects.theme)
+    implementation(projects.features.auth.domain)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
